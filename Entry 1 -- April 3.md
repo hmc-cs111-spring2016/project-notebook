@@ -6,6 +6,8 @@ The critique raises a good point that I didn't really have a detailed implementa
 
 Some of the critique will be more relevant next week, particularly error messages - I haven't thought much about them, but they will be a challenge when I make the front end of the language. 
 
+Overall though, most of my work this week was not driven by the critique. I pretty much knew what I wanted to do, and was not really in need of high-level feedback. The general idea of wanting to be thinking about the things that I'll need to do differently from ContextFree is probably the most important idea in the critique, and it's one that I had already been thinking about to a degree.
+
 ## Description
 
 **TODO:** Fill in this part with information about your work this week:
@@ -21,6 +23,8 @@ In terms of design decisions, there weren't a ton of deep decisions; the majorit
 
 Like I mentioned, my design process is essentially to just implement whatever thing I feel like implementing. I think my design plan wasn't really set in stone last week because this is the way I work best: I just go and do what I feel like doing because I am extremely productive when working on things that I want to be working on. I knew that I would be able to figure out the details as I went, more or less. I guess I took the advice of beginning to implement the design before planning out all of the details.
 
+The actual process of working is essentially to pick a feature (like being able to rotate shapes, or having ellipses in addition to rectangles), implementing it, and then coming up with a simple animation that uses it. I then try to create it, and look for any bugs in the images that are created. I've run in to a lot of different bugs, from incorrectly specifying modifications to having ellipses with bounding boxes being drawn around them. I've fixed all of those that I've seen and the animations that I'm generating now are pretty much what I expect.
+
 ## Questions
 
 **What is the most pressing issue for your project? What design decision do
@@ -28,6 +32,8 @@ you need to make, what implementation issue are you trying to solve, or how
 are you evaluating your design and implementation?**
 
 Syntax design. I need to figure out to what degree I want to just copy ContextFree. There are also other specifications (mostly for defining animation primitives) that I'll need to come up with methods for myself. I'll also need to do some research into possible parsing methods in python. 
+
+I'm evaluating my implementation by making a bunch of animations with it; in theory, all of these animations should hopefully be things that users of the language will be able to create with a much more concise syntax than I can do working directly with my intermediate representation. 
 
 **What questions do you have for your critique partners? How can they best help
 you?**
@@ -41,6 +47,8 @@ The next real big step is to design the syntax, which raises a few questions. Wh
 * Are there any other important features in the IR that I'm missing? 
 
 * Right now I have two specifications for translation: translate and rtranslate. Translate translates a shape by an exact amount; rtranslate translates by that amount, multiplied by the scale of the object, so that as objects get smaller they get translated less. Do I want to give users access to both of these? If so, how? I'm thinking I should pick one (probably rtranslate) as the "default" and give the other as a different option, something like "translate" for rtranslate and "translate_exact" for translate (not committing to these specific names by any means). 
+
+* Is there any useful refactoring that I can do in my intermediate representation? I've already done some (moving most of the rendering code from the Rectangle/Ellipse classes into the Shape class to avoid repetition) but I'm not sure if there's more that I can do. One that I'm considering is creating a class for modifications, instead of just having a list of strings.
 
 **How much time did you spend on the project this week? If you're working in a
 team, how did you share the labor?**
