@@ -33,6 +33,8 @@ Fri
 Sunday
 - finished design + implementation writeup
 - notebook entry
+- implemented seeded random generation.  should be useful for debuggging later on.
+- syntax errors now displayed to users on web page.
 
 ## Questions
 
@@ -57,4 +59,4 @@ My questions are basically if you have any advice for the problems I outlined ab
 **How much time did you spend on the project this week? If you're working in a
 team, how did you share the labor?**
 
-Including time spent on writeups + design, I spent about 11 hours on the project this week.
+Including time spent on writeups + design, I spent about 12 hours on the project this week.
