@@ -25,6 +25,30 @@ Thrust is actually a library kind of like what I want my DSL to be. However, som
 OpenCL
 OpenCL is a widely-supported language that practucally everything runs. It works on both AMD and Nvidia GPUs as well as Intel CPUs and at least some AMD CPUs / integrated GPUs. While you have to change up the include file between systems, many computers should already have good support for getting OpenCL working and the header files may already be installed on Macs with Xcode. However, OpenCL makes it hard to write and debug parallel programs because you have to load the source code and compile them at run time (this is probably required to support all the different systems out there as you don't know which will be running your code and can't compile for them all). I am also the least familiar with OpenCL of all the languages listed here, but it is pretty similar to Cuda (Nvidia's GPU programming language) and Kokkos in a lot of ways. So, I would only have to write each operation once, it would support practically everything, and it would prbably be the most accessible to users, but it will probably be a bit more difficult to write and debug than Kokkos and the performance won't be the greatest. Right now, I think OpenCL is probably the best bet, but let me know if you think otherwise.
 
-Also, check out my latest code and examples [here](https://github.com/JoshuaLandgraf/ParallelVector). You can skim pretty much all of it. Just let me know how it looks. Does the organization look ok? Are the names reasonable? What changes would you like to see in the langauge itself? Also, most of the implementation details may / will change, so don't bother with details there at the moment.
+Besides implementation languages / libraries, the other major design issue I'm struggling with right now is how to implement ternary operators / control flow into my DSL and how to make reductions as user-friendly as possible. Since C++ doesn't allow overloading of the ternary operator, I'd either have to hack together something that looks similar or just use an intuitive method name. I've listed some example syntaxes below if you want to help pick which looks best.
 
-I spent around 8 or 9 hours coding and writing stuff up outside of class. I've also been thinking about language implementation details and how to save time in the long run.
+Ternary operator (pretend A, B, and C are regular variables)
+```C++
+A ? B : C        // hacked together, possibly destabilizing code
+ternary(A,B,C)   // not hacked together, just a regular method
+choose(A,B,C)
+switch(A,B,C)
+pick(A,B,C)
+if(A).then(B).else(C)   // more hacks, but maybe not as many as the first
+A.isTrue(B).isFalse(C)
+B.if(A).otherwise(C)
+B.if(A).else(C)
+```
+
+Reductions (note that 0 is the starting value; we would use 1 if multiplying)
+```C++
+scalar\_variable = vector\_variable.reduce(PV::plus, 0);   // PV is the ParallelVector namespace in case you're wondering
+scalar\_variable = vector\_variable.reduce("+", 0);
+scalar\_variable = vector\_variable.sum();
+scalar\_variable = vector\_variable.sum(0);
+scalar\_variable = 0; scalar\_variable += vector\_variable;   // not sure if this is actually possible, but it would be cool
+```
+
+Also, check out my latest code and examples [here](https://github.com/JoshuaLandgraf/ParallelVector). You can skim pretty much all of it. Just let me know how it looks. Does the organization look ok? Are the names reasonable? What changes would you like to see in the langauge itself? Also, most of the implementation details may / will change, so only critique it at a high-level.
+
+I spent around 8 or 9 hours coding and writing stuff up outside of class (this does not include work on critiques for people in my group). I've also been thinking about language implementation details and how to save time in the long run, but this is not included in the time given either.
