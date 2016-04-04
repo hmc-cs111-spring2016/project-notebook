@@ -41,6 +41,9 @@ I have two primary areas in which I want feedback. First is the format of my tas
 
 The second thing I want feeback for is all of the questions in the previous section. I'm worried that I don't have a completely concrete project direction at this point. I'm happy to do the visualization project, but would this be enough of a DSL? Do you think it would be useful for users? Would it be beneficial to let users compare multiple different wine visualizations? If I do this, when should I generate the graphs and how should I store wines into the database? By that, I mean should I make a tasting note and focus on immediately generating a visualization, or should I store it into a database and generate a visualization after I access it in the database? Actually, I probably should just focus on things that don't deal with databases and think about how to make a visualization from a single program. Would this be a good direction for the project? If so I think my next steps are: write the tasting notes format, generate a visualization, then add the ability to generate multiple visualizations. Are there alternative next steps or directions I could do with that project?
 
+One final question I have: if I end up doing the visualizations, any suggestions for a language I could use? I know Scala has limited tools for it, but if I wanted to make the visualizations more complex, I would think about using another language in conjunction with Scala. Suggestions? I've done d3/SVG for web visualizations before, but I think I'd be looking for something else. I haven't looked into this at all yet, so I'm also going to do research on this in the very near future.
+
+
 **How much time did you spend on the project this week? If you're working in a
 team, how did you share the labor?**
 
