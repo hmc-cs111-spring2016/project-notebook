@@ -81,6 +81,7 @@ decision, I will have to decide whether to prioritize more error checking or fea
    * Design the AST
    * Start designing the parser
    * Begin forumlating the interpreter and how it will interact with the AST
+   * Looked at Prof Ben's Garden Project a bit after the fact (didn't want to take the fun out of thinking through the design challenges). This project can bee seen [here](https://github.com/hmc-cs111-fall2015/garden).
    * Although I can attempt to walk through these decisions with words, I believe the supplied code below will do a better job.
 
 ###### Changes to Previous Decisions
