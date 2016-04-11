@@ -2,22 +2,21 @@
 
 ## Last week's critique
 
-**TODO:** Fill in this part with a summary and reflection on the critque you
-received for last week's work. Answer questions such as:  How, specifically, did
-the feedback help improve the project? Did the feedback point out or offer
-something you hadn't considered? Did it help you make a design decision? Was it 
-helpful in addressing the most pressing issues in your project? How will you
-incorporate the feedback into your work? Will you change something about the 
-design, implementation, or evaluation as a result?
+Milo's critique last week brought a really good point in terms of the data-interpretation model I was using. Furthermore, he really helped clarify some questions I had regarding development environments. This was an extremely helpful piece of advice, as it 1) made me realize that all the parts I needed were somewhat working and 2) gave me a way to approach this overwhelming project. Additionally, because of Milo's critique, I've decided to use a REPL interface in the console for now, as it would make for some more flexible and interesting design. Although I can see arguments for and against a REPL interface, after weighing in what Milo said, I think a REPL interface would be closest to how I initially imagined my DSL being used. Milo was particularly keen on having some way to have feedback when making edits to the sound, which is why he advised against using a script and running said script after all edits have been made. I agree with Milo in that it's very difficult to create music without a responsive interface to play the current sound file being used whenever. When considering whether or not a REPL interace would be ideal, this responsive feedback feature was not something I had considered. Initially, I went for the script design model because it seemed easier in terms of development, and using a REPL interface could get tricky with saving edits between each loop. I plan on speaking to Prof Ben about this, as when we spoke last week he seemed a bit hesitant with a REPL interface. Milo also brought up a good point that I had not previously considered, which was using save states or something similar so that users could "undo" edits. I really like this idea, and I think it would definitely be helpful for users in my domain; however it might end up being a stretch goal depending on how far I can get.
+
+Another thing Milo suggested, unrelated to implementation details, was integrating all the libraries I've found into a mock up to verify that they all work as I expected. As per Milo's words, " If I were you, I'd lay out the basic architecture (from input -> parsing -> internal data -> logic -> output) as soon as possible.  Just choose a single function to start with, and create a horizontal slice of your DSL to support it." Since I have received this critique, I have mocked up a prototype that demos the basic features of pyparsing, pydub, and is more or less a horizontal slice of the DSL for the basic command of increasing and decreasing volume for a sound file. This prototype can be found [here](https://github.com/williumchen/py-disc-jockey/blob/master/test.py). 
+
+Overall, Milo's critique were extremely helpful in addressing the most pressing issues of the project, which at the time were what kind of development environment and data-interpretation model I would have. He was very specific with his critique and identified other aspects of my project that he felt needed to be addresssed even when I had not specified said aspects as "most pressing." 
 
 ## Description
 
-**TODO:** Fill in this part with information about your work this week:
-important design decisions, changes to previous decisions, open questions,
-exciting milestones, preliminary results, etc. Feel free to include images
-(e.g., a sketch of the design or a screenshot of a running program), links to
-code, and any other resources that you think will help clearly convey your
-design process.
+I spent the beginning of the week still largely uncertain where exactly my project would be going. Milo's critique was extremely helpful and ended up bringing about a rather significant design change. Fortunately, the libraries that I intend to use were not affected. 
+
+As aforementioned, perhaps the most significant design decision I've made this week was switching to a REPL interface to allow for responsive feedback to users. After considering Milo's critique, as well as the domain for which my DSL plans to target, I think this responsive feedback is actually a crucial feature. Because my DSL is attempting to allow for text-based music editting, I had not previously considered some features that are innate to a GUI interface, such as playback. Users interacting with a GUI interface can easily play whatever sound file they are currently editing at any step of the editing process. However, if I were to stick with what I had originally planned, which was making users write commands in what was essentially a script, then it would be almost impossible for users of my DSL to receive any feedback. Users would have to compile and recompile their edits one by one, which seems to defeat the purpose of the language. By switching to a REPL interface, however, it does set me back a bit in terms of my initial plans, as there are additional issues that I will now have to consider. I remember speaking to Prof. Ben about whether to use a script interface or a REPL interface, and one argument he made against the REPL interface was saving the state in between each call, which I agree could be kind of sticky. I think pydub has features that might be able to address this issue, but I will have to look more into it. 
+
+As for preliminary results, I have mocked up a horizontal slice of what my DSL will eventually be that showcases the basic command of increasing or decreasing the volume for a sound file, which can be found [here](https://github.com/williumchen/py-disc-jockey/blob/master/test.py). It uses both pydub and pyparsing. For now, it parses the command "+ volume 20" from a script variable in the code. I still need to look into how to get the REPL interface working, which will most likely be the plans / goal for this week. The parsing done in test.py is more or less the same parsing model I will be using for the actual parser. Because I am only looking at the basic commands of increasing and decreasing volume, the parser is pretty sparse for now, but I intend to focus on getting this "horizontal slice" completely working before moving on. One thing that I have yet to do in regards to the command for increasing and decreasing the volume is changing the scale. As of now, the integer a user types for increasing and decreasing volume represents decibels, which to me is a pretty foreign scale. I plan on allowing users to type a percentage and converting said percentage to a decibel change in the intermediate representation. 
+
+My main focus next week will be finishing up the parser and starting on the intermediate representation, although I'm still kind of unclear as to how to go about this, as I'll discuss in the questions section.
 
 ## Questions
 
@@ -25,10 +24,15 @@ design process.
 you need to make, what implementation issue are you trying to solve, or how
 are you evaluating your design and implementation?**
 
+I think the most pressing issue for the project is getting the parser completed and working on the intermediate representation. I need to start making some specific design choices that I haven't really considered for the intermediate representation, which I will detail below.
+
 **What questions do you have for your critique partners? How can they best help
 you?**
+
+I'm thinking about the intermediate representation, but I'm struggling with a few ideas. It would be great to hear your thoughts on what approach I should take. Prof. Ben suggested that each editted effect be its own method/class (not sure which to one Prof Ben actually suggested/ which one I should do, some feedback here would be helpful too) that would be called by the logic / semantics based off of what command was parsed. So for instance: if '+ volume 20' was called, it would be directed to some volume method that would take in an integer that would ultimately change the volume of the sound file. Are there any other intermediate representations you might find better? I know Milo suggested also incorporating the array of different sound files in the intermediate representation, but I'm still a bit unclear on how exactly that would work. Would I have to rework the intermediate representation? It just seems a bit overwhelming, though I'll probably talk to Prof Ben about it this week.
 
 **How much time did you spend on the project this week? If you're working in a
 team, how did you share the labor?**
 
+I worked a total of 8 hours (including studio time) redesigning / planning around a REPL interface, looking into additional libraries I might need for a REPL interface, and developing the prototype that uses pydub and pyparsing as well as developing the actual parser. The parser still needs additional work. 
 
