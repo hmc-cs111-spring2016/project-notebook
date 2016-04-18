@@ -40,8 +40,9 @@ The majority of my time this week was spent designing and implementing the GUI v
 -Worked on frontend for GUI version of DSL  
 -Started conversion from form elements to DSL code
 
-**Sunday**: 1.5 hours  
+**Sunday**: 2.5 hours  
 -Wrote notebook entry
+-Worked on GUI DSL - now outputs sheet music
 
 ## Questions
 
@@ -68,4 +69,4 @@ What do you think of the direction of my GUI so far?  Any elements other than th
 **How much time did you spend on the project this week? If you're working in a
 team, how did you share the labor?**
 
-Spent 10-11 hours on the project this week.
+Spent 11-12 hours on the project this week.
