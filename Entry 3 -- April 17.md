@@ -36,4 +36,4 @@ Also, perhaps you could help me test how easy it is to get my code working since
 
 * If you're on Windows, this command probably won't work. Instead,  you could try following the instructions on the bottom of [this website](https://www.fixstars.com/en/opencl/book/OpenCLProgrammingBook/first-opencl-program/) if you have Visual C++ and see how that works out.
 
-I spent somewhere around 5 hours this week on my DSL outside of class. I didn't have as much free time due to my family being here and thesis, but made a lot of progress in the time given.
+I spent somewhere around 7 hours this week on my DSL outside of class. I didn't have as much free time due to my family being here and thesis, but made a lot of progress in the time given.
