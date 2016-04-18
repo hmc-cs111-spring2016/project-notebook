@@ -2,22 +2,30 @@
 
 ## Last week's critique
 
-**TODO:** Fill in this part with a summary and reflection on the critque you
-received for last week's work. Answer questions such as:  How, specifically, did
-the feedback help improve the project? Did the feedback point out or offer
-something you hadn't considered? Did it help you make a design decision? Was it 
-helpful in addressing the most pressing issues in your project? How will you
-incorporate the feedback into your work? Will you change something about the 
-design, implementation, or evaluation as a result?
+The advice in last week's critique was very encouraging to me. I keep losing sight of my project direction and considering too many things. Rebekah helped me commit to a few concrete decisions that were well within the scope of my project. She recommended that I continue with visualizations and said that my current software stack was a positive contribution to the project. This was the encouragement that I needed to do more in-depth thinking about visualizations as opposed to broader thinking about all the different directions I could take the project. 
+
+Some of the specific suggestions Rebekah gave for visualizations were particularly interesting to me. She liked the idea of integrating the opinions of a professional taster, especially since that was more in line with my original project goals. I still don't have a firm idea of how I will do that, but I plan to consider the problem in future weeks. I want to incorporate the ability to compare notes in some way, be it with a professional or with other sets of notes. As per Rebekah's suggestion, I plan to (at minimum) add a side-by-side tasting notes comparison feature.
+
+The critique mentioned that I should not invest a great deal of time in error-checking at the expense of other features. I agree that it might be time-intensive to try and develop specific messages for things like obscure parsing errors. Instead, I'll probably structure the language so that many of the fields are optional and the user has the flexibility to customize their tasting notes. I also got a recommendation for the Python json library to aid in the conversion between text and JSON. I used this for the demo on Monday (reading in a JSON-formatted text file) and plan to continue using it as I do more work on my project.
+
+Finally, the critique made me think more about the types of visualizations I want to produce. I got some good suggestions for depicting a wine glass filled with flavors. Rebekah suggested that I separate the flavors by the point at which they are detected, which is a fun idea I was already considering. It was good to have someone else mention the idea and shows that this style of visualization may appeal to different users. She briefly mentioned that I could include various types of visualizations. I want to discuss this more in my entry for this week, but I think this is a good idea that can be scaled up or down depending on how much time I have to spare.
 
 ## Description
 
-**TODO:** Fill in this part with information about your work this week:
-important design decisions, changes to previous decisions, open questions,
-exciting milestones, preliminary results, etc. Feel free to include images
-(e.g., a sketch of the design or a screenshot of a running program), links to
-code, and any other resources that you think will help clearly convey your
-design process.
+As is becoming very common from week to week, I had a mini-identity crisis about the exact nature of my project. Usually, these crises are themed around the concern that I am creating more of an application and not a DSL. This week was no different. I started out with an demonstration that could take a text file organized into a pseudo-JSON format and display it in a sunburst d3 graph in a browser. I didn't receive any particularly negative reviews of my URL-based file name parameter passing method (as mentioned in last week's notebook), so I decided not to spend time thinking of other solutions. My intentions for the week were to create a parser that could take tasting notes in a particular text format and convert them to this JSON format for display. As I considered this approach to the project, I became more and more convinced that the parser would have little substance. I worried about the language design aspects of the project would only involve filling holes in a JSON template. 
+
+On Monday, I shared my concerns with my critique group and Prof Ben. After a bit of discussion, I was advised to consider the visualization end of the project as a place to do more language design work. I started looking into differences between chart formats in d3, since I thought that I could let users adjust various parameters in charts. That way they could customize the chart types to their specifications, with my wine visualizations being used for a proof of concept. I found [Datamaps](http://datamaps.github.io/), which has this specific functionality for map visualizations in d3. If I decided to go that way with my project, I intended to implement this for several different chart styles. However, I was not sold. I decided it would be a lot of work at the cost of everything I had already done on the project. I wanted to stay true to my original project and didn't want to start something fairly different with a vague scope. 
+
+Eventually, I came back to my original intentions for the week. I wanted to write a parser to convert the text tasting notes format into JSON for visualizations. After thinking about the problem for a while, I decided that my ideal tasting notes format would have enough complexity that I could develop a grammar and write my own parser. My earlier hesitations revolved around the fear that my tasting notes format would not be syntactically complex enough to warrant a parser. I also knew that I was not the first person to want to convert between text and JSON in Python, so there would probably be more efficient tools for this conversion than writing my own parser. However, I looked into the problem a bit more and found that the text to JSON tools would still require a parser for my tasting notes in order to build the correct form of dictionary for JSON conversion.
+
+With this in mind, I set out to write a parser for my tasting notes format. The code for this lives in `jsonParser.py` and takes in the text from a specifically formatted file to output the appropriate JSON for a d3 visualization. I began by sketching out an abstract syntax tree in `AST.py`. I don't use this file anywhere in the actual code stack, but it helped me determine the order in which I wanted to parse the tasting notes to create the JSON. I then wrote methods for each node in the AST, though my initial approach to the problem was incorrect. I thought that I could output a string with the appearance of a JSON object that could then be converted to actual JSON with the Python `json` library. However, the library takes in text data in the form of a Python dictionary. I had forgotten this about the `json` library and didn't think to check before implementing the parser. After a lot of print statements, I tweaked a lot of the code by building up the end result in a dictionary instead of a string. Thankfully, these changes resulted in a functional parser. I re-learned the annoying lesson to double check documentation in order to save time in implementation, which will be helpful in future coding projects.
+
+At this point, I was mainly finished with my work for the week but decided to do a little bit of work on the other end of the project. I knew that I could parse a very basic tasting notes program and get a visualization, but the visualization needed a lot of work. I hadn't made any modifications to the sunburst and wanted to create a visual output that would include all parts of the tasting notes as well as separate charts for the flavor and profile of a wine. After some experimentation with d3, I was able to visualize all parts of a user's tasting notes, something I intend to demonstrate to my critique partners on Monday. I intend to discuss my project goals for the coming week in the next section of the journal. 
+
+
+- Mention user-defined types of visualizations
+- Comparing with friends/pro wine people
+- Custom GUI (users adjust colors and things like that, but I might try to let users select different types of charts for wine attributes)
 
 ## Questions
 
@@ -25,10 +33,22 @@ design process.
 you need to make, what implementation issue are you trying to solve, or how
 are you evaluating your design and implementation?**
 
+In the coming week, I have a lot of things I can improve on the project as well as many additional features I could implement. The two main areas I want to explore are the comparison of multiple wines and more visualization options. I have consistently received feedback that the project would be more interesting and novel with a review comparison feature. I do not know whether this would best be implemented in a comparison against other wines reviewed in my format. It would be a very reasonable goal to let users input two text files as arguments for side-by-side comparison. The idea of bringing in professional tasting notes or reviews is a bit more daunting but could potentially add a great deal to the project. I would have to review some of the APIs I researched earlier in the semester but could potentially find some wine database housing professional tasting notes. Even if these weren't formatted in a particular manner, it could be interesting to include them in a visualization. I could make that a user-defined feature accessible via an optional command line argument. 
+
+As I mentioned, I also want to explore additional visualization options. This is a more open-ended problem, but I like the idea that users could specify the format in which they could view the notes. It would be convenient for someone who prefers pie charts over wine glass visualizations to see their tasting notes in a friendly format. 
+
+In general, I'm trying to decide what features are within the scope of my project. I want to focus on parts of the project that I can reasonably implement before the end of the year. This could be a fun project to extend (and there's certainly a lot of directions I could take it) but I want it to have working features at the end of the project term. The most important issue for the project is: given what I have at this moment, what can I resonably accomplish by the end of the semester? I want to refine the parser and some of the primary visualization code, but I think I can add several more features to the current project core. I would appreciate advice on which features would be the most desired and the most feasible to implement.
+
 **What questions do you have for your critique partners? How can they best help
 you?**
 
+As I mentioned above, I would like to know how to structure the rest of my work time on the project. I am satisfied that my project is currently working from end-to-end. At this point, I want to know how to make it better. I also have questions about whether my current system seems efficient. Could I organize the project structure in a different way? Should the files be stored somewhere else? Is it all right to call the parser in this way, and is it fine to have all of that parsing logic in the same file? Should I create a better AST?
+
+Like every other week, what visualizations should I make? I'm going to make the wine glass and some pie/direction charts, but hopefully I can add the option for users to declare their preferred viewing format. If this feature gets implemented, I want to have several appealing chart options for users. Any suggestions?
+
 **How much time did you spend on the project this week? If you're working in a
 team, how did you share the labor?**
+
+Including time in class and time writing this entry, I spent approximately 9 hours on the project this week.
 
 
