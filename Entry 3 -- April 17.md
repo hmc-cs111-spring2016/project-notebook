@@ -32,4 +32,8 @@ I still need to get casting, non-elementwise operations, and lazy memory copies 
 
 I'm not sure I really have many design decisions to deal with right now. I've already talked about method names and casting, so you don't have to worry about those. I am considering eliminating return values in all unnecessary cases, though (e.g. +=, ++, --, etc.). Do you think this would be too restrictive or would it help programmers overall when working with objects?
 
+Also, perhaps you could help me test how easy it is to get my code working since you won't have many questions to answer this week. Just try downloading the source code [here](https://github.com/JoshuaLandgraf/ParallelVector) and see if (1) it compiles on your computer using the command in the Readme*, (2) the executable runs without crashing, and (3) if every other line matches the line below it (i.e. the computed values are correct). If you are on an older machine, you may want to decrease the size of the Vectors in the example program to something less than 10,000,000 so that it runs a little faster. Since this is a program that uses your GPU, it's also good to save your work beforehand just in case the GPU crashes.
+
+* If you're on Windows, this command probably won't work. Instead,  you could try following the instructions on the bottom of [this website](https://www.fixstars.com/en/opencl/book/OpenCLProgrammingBook/first-opencl-program/) if you have Visual C++ and see how that works out.
+
 I spent somewhere around 5 hours this week on my DSL outside of class. I didn't have as much free time due to my family being here and thesis, but made a lot of progress in the time given.
