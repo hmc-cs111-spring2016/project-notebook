@@ -2,14 +2,6 @@
 
 ## Last week's critique
 
-**TODO:** Fill in this part with a summary and reflection on the critque you
-received for last week's work. Answer questions such as:  How, specifically, did
-the feedback help improve the project? Did the feedback point out or offer
-something you hadn't considered? Did it help you make a design decision? Was it 
-helpful in addressing the most pressing issues in your project? How will you
-incorporate the feedback into your work? Will you change something about the 
-design, implementation, or evaluation as a result?
-
 The Critique gave me lots to think about this week, although most of it will probably be more applicable in this coming week. My Critiquer suggested I spend some more time thinking about who my audience is and how they will feel interacting with my language which will be important as I begin to try to hide some of the Prolog "flavor" in my DSL. I would love to work to get the class info and read it into the program behind the scenes so that the user doesn't have to deal with it at all, but I would need to learn a whole other programming language (or 2!) based on my discussion with Casey, so I don't think that will be within the scope of this project. I already have lots and lots to learn just because i am trying to break all of my imparative programming habits to use Prolog!
 
 I am not totally comfortable using Eclipse, but I was trying to use the ProDT plugin which seemed very helpful, but was just not allowing me to run the programs easily. Professor Ben spent some time with me, trying to get it set up, but the pathway we set up was messed up when I tried to move one of the files and I decided it wasn't worth spending more time on getting Eclipse to work correctly, when I could just install a simple extension for Sublime.
