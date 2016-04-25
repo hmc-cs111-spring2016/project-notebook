@@ -37,3 +37,36 @@ This week I made some huge changes (some of which were in response to some massi
 Unfortunately, due to the massive changes mentioned earlier, I didn't have much time to implement other features that are very important to the DSL and will need to get those done in the next week. I don't really have many critique questions as there aren't really any design questions left.
 
 I've spent arount 7-8 hours already this week and will be working a lot more tonight to get the aforementioned changes full working and to prepare for the presentation tomorrow.
+
+## Update
+
+I spent about two more hours fixing some small bugs and adding tests to the example program and now have some performance results.
+
+Tests using 10,000,000 element-wide Vectors:
+
+| Device        | Runtime |
+|---------------|---------|
+| CPU, serial   | 1.996s  |
+| CPU, threaded | 1.690s  |
+| iGPU          | 2.407s  |
+| dGPU          | 3.642s  |
+
+Tests using 25,000,000 element-wide vectors:
+
+| Device        | Runtime |
+|---------------|---------|
+| CPU, serial   | 4.425s  |
+| CPU, threaded | 3.070s  |
+| iGPU          | 4.668s  |
+| dGPU          | 6.756s  |
+
+Tests using 250,000,000 element-wide vectors:
+
+| Device        | Runtime |
+|---------------|---------|
+| CPU, serial   | 77.309s |
+| CPU, threaded | 44.589s |
+
+GPU performance results are unavailable for the last test due to memory / compute time restrictions (graphics GPUs have a limited amount of RAM and can only let tasks run for so long as they need to ensure no one task hogs the GPU).
+
+Unfotunately, it looks like the GPUs are still not beating serial speeds. This could possibly be due to them not being particularly powerful, memory bandwidth limitations, and/or inefficient computing. However, at least we are gettign speedups on the CPU with threading, so there are some performance gains to be had.
