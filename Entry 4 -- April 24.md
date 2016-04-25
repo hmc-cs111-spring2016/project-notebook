@@ -13,8 +13,15 @@ I also got some advice from William and Aaron on my GUI layout.  I asked them ho
 This week my time was split pretty evenly over three different tasks.
 - Cleaning up my code and GUI layout.  Nothing too interesting here, but there are details in my work log below.
 - Implementing basic syntax highlighting with CodeMirror.  This ended up taking a decent amount of time.  I used CodeMirror's [Simple Mode](http://codemirror.net/demo/simplemode.html) to define my highlighter in order to speed up the process, but it ended up being slightly less powerful than I would have liked.  For example, there's no way for me to define multiple "next" states for a given rule (this should make sense if you skim the documentation + example that I linked).
-- Added more syntax errors to parser.  At this point I think I've covered most of the reasonable syntax error that could occur for the average user.  The code for my parser is starting to get bloated.  Not sure how I can better organize this.  See below for more on this.
+- Added more syntax errors to parser.  At this point I think I've covered most of the reasonable syntax error that could occur for the average user.  The code for my parser is starting to get bloated.  Not sure how I can better organize this (see below for more on organization issues).
 
+Errors I currently support are as follows:
+- Invalid parameter value
+- Missing semicolon
+- Missing parameter value
+- Missing stave definition
+- Missing closing curly brace
+- Min range value greater than max value (this isn't actually a syntax error.  I'll eventually move it from parser and check at runtime).
 
 
 #### Work Log
@@ -37,7 +44,7 @@ This week my time was split pretty evenly over three different tasks.
 -Finished writing DSL "mode" for basic syntax highlighting  
 -Added a bunch of errors
 
-**Sunday**: 2 hours  
+**Sunday**: 3 hours  
 -Notebook entry  
 -Prepared presentation
 
@@ -66,4 +73,4 @@ Is the method I'm sometimes using for error checking (creating "error" rules) ba
 **How much time did you spend on the project this week? If you're working in a
 team, how did you share the labor?**
 
-~11 hours
+~12 hours
