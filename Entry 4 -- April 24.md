@@ -16,13 +16,6 @@ Because of Milo's specific and effective critique, I changed a few feature desig
 
 ## Description
 
-**TODO:** Fill in this part with information about your work this week:
-important design decisions, changes to previous decisions, open questions,
-exciting milestones, preliminary results, etc. Feel free to include images
-(e.g., a sketch of the design or a screenshot of a running program), links to
-code, and any other resources that you think will help clearly convey your
-design process.
-
 I've attached a screenshot of my shell with the working "history" and "revert" feature as explained in the above section.
 ![alt text](https://github.com/williumchen/project-notebook/blob/master/Screen%20Shot%202016-04-24%20at%2010.49.54%20PM.png)
 
