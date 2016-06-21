@@ -2,33 +2,22 @@
 
 ## Last week's critique
 
-**TODO:** Fill in this part with a summary and reflection on the critque you
-received for last week's work. Answer questions such as:  How, specifically, did
-the feedback help improve the project? Did the feedback point out or offer
-something you hadn't considered? Did it help you make a design decision? Was it 
-helpful in addressing the most pressing issues in your project? How will you
-incorporate the feedback into your work? Will you change something about the 
-design, implementation, or evaluation as a result?
+Both my critiquers were very helpful this week with making some important design decisions. I think I will just use `vector.sum()` and `vector.product()` for reductions and `A.choose(B,C)` for the ternary operator. Andrew's critique also revealed a lot of small things that I could do to make the code better, which became even more important to take care of over this last week. I have since added a Readme with build instructions, changed the extension of my header file (from .h to .hpp), and have now standardized the length checks that I started before. While I haven'd added all the operators he mentioned, I've been busy working on the framework that will make implementing those operators much easier. I also agree with Andrew that ++ and -- in C++ can get pretty confusing, especially with objects. For this reason, I'd also like to hold off on some of the more advanced operators to consider whether they will even be worthwhile (in some cases, they might cause more trouble than they actually help).
 
 ## Description
 
-**TODO:** Fill in this part with information about your work this week:
-important design decisions, changes to previous decisions, open questions,
-exciting milestones, preliminary results, etc. Feel free to include images
-(e.g., a sketch of the design or a screenshot of a running program), links to
-code, and any other resources that you think will help clearly convey your
-design process.
+My work this week has been focused on getting OpenCL operational. I guess I should point out that I decided to go with OpenCL for the implementation of my project. While I am not the most familiar with it, I did find a nice header library that simplifies working with OpenCL and some code on Github that was very helpful for what I want to do*. One trick that I've been exploring is exploiting the fact that that OpenCL compiles its kernels at run time. This means that I can generate a kernel specific to the types and operations needed at the moment and then compile this kernel to be able to use it. This approach greatly reduces the complexity of my DSL's implementaiton and helps keep code pretty short and straightforward. While I have most of the code in place, debug messages kept getting more and more obscure and hard to access, so I wasn't able to get as far as I'd hoped. However, it does look like the kernals are being built and compiled and the data is being copied over, which is a huge amount of progress. Hopefully once I get the first operation working, they will practically all work as they access the OpenCL implementation through a helper function that bridges the CPU and OpenCL worlds.
+
+Since we are supposed to have a prototype this week, you can refer to last week's code as that actually compiled, ran, and was correct. While it's missing some reductions, almost all of the operators are there and it gives a good idea for the style of the language.
+
+Another thing that's going to be a huge pain is C++'s type system. It's easy to take implicit conversions for granted, but I've not had much luck with figuring out how to make it work. For simpler systems, there are moderately advanced hacks you can use to get C++ to handle that work for you, but those won't cut it here because I actually need to know the result type of my expression to write the kernel. For now, I may just have to force programmers to cast Vectors to the same type they want in the result of the next computation so that I can base the final type of one of the input types.
+
+* I will include a copy of the library in the file for convenience and because I had to make some modifications to make it work. Apparantly Clang can't optimize an if statement when the condition is false, so it gets upset about code that is in the true branch, even though it is guaranteed to never execute.
 
 ## Questions
 
-**What is the most pressing issue for your project? What design decision do
-you need to make, what implementation issue are you trying to solve, or how
-are you evaluating your design and implementation?**
+As I stated earlier, getting OpenCL working is a must that I have been working really hard on. I've rewritten almost all my code and added around 200 lines in the process. Hopefully most of the tough OpenCL problems are behind me, but I'll have to see. While I can't expect critiquers to help me with bugs in the OpenCL parts of my code, perhaps they could see if there's a better solution to some of the approaches I've taken. For instance, in retrospect, I could have just passed the operator string from function to function instead of using the complex enum + array system I have right now. Also, if you know of a better solution to convert standard C++ arithmatic types to OpenCL type names, it could simplify my code a bit. Also, if you know of any solutions to other problems that I mentioned in my description section, I would appreciate those too. Otherwise it might be a pretty easy week as most of my concerns are with implementation right now.
 
-**What questions do you have for your critique partners? How can they best help
-you?**
+Also, while you may not know, I figure I'll ask. Do you know of a `std::vector` implementation that doesn't use bit packing with bools? That would make my life a lot better as that's really messing with being able to use `std::vector`s to manage data on the CPU.
 
-**How much time did you spend on the project this week? If you're working in a
-team, how did you share the labor?**
-
-
+I spent around 10 hours this week on just the project. Unfortunately OpenCL is very complicated and just as I started to get the hang of it, I found the library that I'm now using (which is also taking a lot of getting used to as well).
